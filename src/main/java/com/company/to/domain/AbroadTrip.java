@@ -1,12 +1,13 @@
 package com.company.to.domain;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 public class AbroadTrip extends Trip {
 
-    private int insurence;
+    private int insurance;
 
-    public AbroadTrip(LocalDate start, LocalDate end, String destination) {
+    public AbroadTrip(Date start, Date end, String destination) {
         setStart(start);
         setEnd(end);
         setDestination(destination);
@@ -19,10 +20,10 @@ public class AbroadTrip extends Trip {
     }
 
     public int getInsurence() {
-        return insurence;
+        return insurance;
     }
 
     public void setInsurence(int insurence) {
-        this.insurence = insurence;
+        this.insurance = insurance;
     }
 }

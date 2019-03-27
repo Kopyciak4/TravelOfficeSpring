@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.Collection;
+import java.util.Date;
+import java.util.Map;
 import java.util.Set;
 
 @Service
@@ -33,17 +36,17 @@ public class TravelOfficeServiceImpl implements TravelOfficeService {
     }
 
     @Override
-    public Trip addAbroadTrip(LocalDate begDate, LocalDate endDate, String destination, int insurence, int price){
+    public Trip addAbroadTrip(Date begDate, Date endDate, String destination, int insurance, int price){
         Trip trip = new AbroadTrip(begDate, endDate, destination);
         trip.setPrice(price);
         System.out.println("ubezpiecznie");
-        ((AbroadTrip) trip).setInsurence(insurence);
+        ((AbroadTrip) trip).setInsurence(insurance);
         travelOffice.addTrip(destination, trip);
         return trip;
     }
 
     @Override
-    public Trip addDomesticTrip(LocalDate begDate, LocalDate endDate, String destination, int discount, int price){
+    public Trip addDomesticTrip(Date begDate, Date endDate, String destination, int discount, int price){
         Trip trip = new DomesticTrip(begDate, endDate, destination);
         trip.setPrice(price);
         System.out.println("znizka");
@@ -53,7 +56,9 @@ public class TravelOfficeServiceImpl implements TravelOfficeService {
     }
 
     @Override
-    public void assign(Customer customer, Trip trip) {
+    public void assign(String name, String destination) {
+        Customer customer = getCustomerToAssign(name);
+        Trip trip = getTripToAssign(destination);
         customer.setTrip(trip);
     }
 
@@ -97,12 +102,12 @@ public class TravelOfficeServiceImpl implements TravelOfficeService {
     }
 
     @Override
-    public Set<Customer> showCustomers() {
-        travelOffice.getCustomers().forEach((c -> System.out.println(c)));
+    public Set<Customer> getCustomers() {
+       return travelOffice.getCustomers();
     }
 
     @Override
-    public void showTrips() {
-        travelOffice.getTrips().values().forEach((v -> System.out.println(v)));
+    public Collection<Trip> getTrips() {
+       return travelOffice.getTrips().values();
     }
 }
