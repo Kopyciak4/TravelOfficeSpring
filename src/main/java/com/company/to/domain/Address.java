@@ -1,8 +1,9 @@
 package com.company.to.domain;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Address {
+public class Address  {
 
     private String street;
     private String zip;

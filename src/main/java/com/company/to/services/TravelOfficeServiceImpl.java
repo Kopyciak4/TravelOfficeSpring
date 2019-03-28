@@ -40,7 +40,7 @@ public class TravelOfficeServiceImpl implements TravelOfficeService {
         Trip trip = new AbroadTrip(begDate, endDate, destination);
         trip.setPrice(price);
         System.out.println("ubezpiecznie");
-        ((AbroadTrip) trip).setInsurence(insurance);
+        ((AbroadTrip) trip).setInsurance(insurance);
         travelOffice.addTrip(destination, trip);
         return trip;
     }
